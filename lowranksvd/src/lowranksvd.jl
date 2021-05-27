@@ -94,11 +94,7 @@ function get_approximate_basis(
 end
 
 function _svd_lowrank(A::AbstractArray{T}, l::Int64, niter::Int64 = 2, M::Union{AbstractArray{T}, Nothing} = nothing) where T
-    """
-    computing the SVD approximation of a transpose in
-    order to keep B shape minimal (the m < n case) or the V
-    shape small (the n > q case)
-    """
+    
         m, n = size(A)
     if M === nothing
         Mt = nothing
@@ -108,6 +104,11 @@ function _svd_lowrank(A::AbstractArray{T}, l::Int64, niter::Int64 = 2, M::Union{
     At = transpose(A)
 
     if m < n || n > l
+        """
+        computing the SVD approximation of a transpose in
+        order to keep B shape minimal (the m < n case) or the V
+        shape small (the n > l case)
+        """
         Q = get_approximate_basis(At, l, niter, Mt)
         Qc = conj(Q)
         if M === nothing
