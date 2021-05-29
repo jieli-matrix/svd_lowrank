@@ -120,14 +120,13 @@ function _svd_lowrank(A::AbstractArray{T}, l::Int64, niter::Int64 = 2, M::Union{
         Vt = Vt * Q'
     else
         Q = get_approximate_basis(A, l, niter, M)
-        Qc = conj(Q)
         if M === nothing
-            B = At * Qc
+            Bt = Q' * A
         else
-            B = At * Qc - Mt * Qc
+            Bt = Q' * (A - M)
         end
 
-        U, S, Vt = svd!(transpose(B))
+        U, S, Vt = svd!(Bt)
         U = Q * U
     end
     return LowRankSVD(U, S, Vt)
