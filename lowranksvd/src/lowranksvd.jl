@@ -1,16 +1,15 @@
 # Low Rank Singular Value Decomposition
+using LinearAlgebra
+
+# Construct LowRankSVD DataStructure
 """
     LowRankSVD <: Factorization
 Matrix factorization type of the singular value decomposition (SVD) approximation of a low rank matrix `A`.
 LowRankSVD is return type of [`svd_lowrank(_)`](@ref), the corresponding matrix factorization function.
-
 If `F::SVD` is the factorization object, `U`, `S`, `V` and `Vt` can be obtained
 via `F.U`, `F.S`, `F.V` and `F.Vt`, such that `A ≈ U * Diagonal(S) * Vt`.
 The singular values in `S` are sorted in descending order.
 """
-
-using LinearAlgebra
-# Construct LowRankSVD DataStructure
 struct LowRankSVD{T,Tr,M<:AbstractArray{T}} <: Factorization{T}
     U::M
     S::Vector{Tr}
