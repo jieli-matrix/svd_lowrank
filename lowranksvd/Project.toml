@@ -1,0 +1,13 @@
+name = "lowranksvd"
+uuid = "1b57e39d-df59-489b-a8dc-d767af2d0b9c"
+authors = ["jieli-matrix <li_j20@fudan.edu.cn> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
